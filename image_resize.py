@@ -34,7 +34,6 @@ def scale_image(image, scale_size):
 def save_image_to_path(image, from_source_path, to_filepath=None):
     if to_filepath:
         image.save(to_filepath, image.format)
-
     else:
         source_dir, source_extension = os.path.splitext(from_source_path)
         to_filepath = '{}__{}x{}{}'.format(source_dir, image.size[0], image.size[1], source_extension)
