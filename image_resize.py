@@ -5,18 +5,13 @@ import sys
 
 
 def get_arguments_for_resize():
-    parser = argparse.ArgumentParser(description='Output file for information about <Coursera> courses')
+    parser = argparse.ArgumentParser()
     parser.add_argument('file', type=str, help='path to initial image')
     parser.add_argument('-w', '--width', type=int)
     parser.add_argument('-ht', '--height', type=int)
     parser.add_argument('-s', '--scale', type=float)
     parser.add_argument('-o', '--output')
     return parser.parse_args()
-
-
-def open_image(path_to_image):
-    if os.path.exists(path_to_image):
-        return Image.open(path_to_image)
 
 
 def resize_image(original_image, resized_width=None, resized_height=None):
@@ -56,7 +51,7 @@ def catch_errors(parser_args):
 if __name__ == '__main__':
     parameters = get_arguments_for_resize()
     catch_errors(parameters)
-    target_image = open_image(parameters.file)
+    target_image = Image.open(parameters.file)
 
     if parameters.scale:
         target_image = scale_image(target_image, parameters.scale)
